@@ -33,6 +33,7 @@ Crate source was found to be incompatible with its MSRV '1.59.0', as defined in 
 for i in $(seq 56 70); do sleep 1s && echo "== Cargo 1.$i.0==\n" && rm -f Cargo.lock && echo "$(cargo +1.$i.0 --version)" &&  cargo +1.$i.0 generate-lockfile && tomq '.package | map(select(.name == "half")) | first | .version' Cargo.lock && cargo msrv --output-format json verify; done >> log.txt 2>&1
 ```
 
+With cargo-msrv `0.15.1`:
 
 ```
 == Cargo 1.56.0==
@@ -212,4 +213,260 @@ cargo 1.70.0 (ec8a8a0ca 2023-04-25)
 {"reason":"verify-complete","success":false,"toolchain":"x86_64-unknown-linux-gnu","check_cmd":"cargo check"}
 Crate source was found to be incompatible with its MSRV '1.59.0', as defined in '/home/user/wow-cargo/Cargo.toml'
 
+```
+
+The same but with the latest cargo-msrv beta: `0.16.0-beta.14`
+
+```
+== Cargo 1.56.0==
+
+cargo 1.56.0 (4ed5d137b 2021-10-04)
+    Updating crates.io index
+"2.2.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}}
+== Cargo 1.57.0==
+
+cargo 1.57.0 (b2e52d7ca 2021-10-21)
+    Updating crates.io index
+"2.2.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}}
+== Cargo 1.58.0==
+
+cargo 1.58.0 (7f08ace4f 2021-11-24)
+    Updating crates.io index
+"2.2.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}}
+== Cargo 1.59.0==
+
+cargo 1.59.0 (49d8809dc 2022-02-10)
+    Updating crates.io index
+"2.2.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":true}}
+== Cargo 1.60.0==
+
+cargo 1.60.0 (d1fd9fe 2022-03-01)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.61.0==
+
+cargo 1.61.0 (a028ae4 2022-04-29)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.62.0==
+
+cargo 1.62.0 (a748cf5a3 2022-06-08)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.63.0==
+
+cargo 1.63.0 (fd9c4297c 2022-07-01)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.64.0==
+
+cargo 1.64.0 (387270bc7 2022-09-16)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.65.0==
+
+cargo 1.65.0 (4bc8f24d3 2022-10-20)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.66.0==
+
+cargo 1.66.0 (d65d197ad 2022-11-15)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.67.0==
+
+cargo 1.67.0 (8ecd4f20a 2023-01-10)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.68.0==
+
+cargo 1.68.0 (115f34552 2023-02-26)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.69.0==
+
+cargo 1.69.0 (6e9a83356 2023-04-12)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
+== Cargo 1.70.0==
+
+cargo 1.70.0 (ec8a8a0ca 2023-04-25)
+    Updating crates.io index
+"2.3.1"
+{"type":"meta","instance":"cargo-msrv","version":"0.16.0-beta.14","sha_short":null,"target_triple":"x86_64-unknown-linux-gnu","cargo_features":"default,rust_releases_dist_source","rustc":"1.70.0"}
+{"type":"subcommand_init","subcommand_id":"verify"}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"start"}}
+{"type":"fetch_index","source":"rust_changelog","scope":{"id":0,"marker":"end"}}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"start"}}
+{"type":"setup_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":2,"marker":"end"}}
+{"type":"check_method","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"method":{"type":"rustup_run","args":["1.59.0-x86_64-unknown-linux-gnu","cargo","check"],"path":"/home/user/wow-cargo"}}
+{"type":"check_result","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}
+{"type":"check_toolchain","toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"scope":{"id":1,"marker":"end"}}
+{"type":"subcommand_result","subcommand_id":"verify","result":{"toolchain":{"version":"1.59.0","target":"x86_64-unknown-linux-gnu"},"is_compatible":false,"error":"    Updating crates.io index\nerror: failed to select a version for the requirement `half = \"^2.2.1\"`\ncandidate versions found which didn't match: 2.2.1, 2.2.0, 2.1.0, ...\nlocation searched: crates.io index\nrequired by package `wow-cargo v0.1.0 (/home/user/wow-cargo)`\n"}}
+{"type":"terminate_with_failure","reason":{"description":"Crate source was found to be incompatible with Rust version '1.59' specified as MSRV in the Cargo manifest located at '/home/user/wow-cargo/Cargo.toml'"}}
 ```
